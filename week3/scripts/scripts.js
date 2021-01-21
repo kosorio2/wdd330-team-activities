@@ -24,7 +24,7 @@
         'Beckett, Samuel',
         'Beddoes, Mick',
         'Beecher, Henry',
-        'Beethoven, Ludwig',
+        'Van Beethoven, Ludwig',
         'Begin, Menachem',
         'Belloc, Hilaire',
         'Bellow, Saul',
@@ -59,7 +59,9 @@
         'Black, Elk',
         'Blair, Robert',
         'Blair, Tony',
-        'Blake, William'
+        'Blake, William',
+        'Anderson, James',
+        'Ken, Jacob'
       ];
 
       // Array.prototype.filter()
@@ -70,27 +72,67 @@
       ); 
 
       // console.log(fifteen100s)
-      console.table(fifteen100s);
+      // console.table(fifteen100s);
 
       // Array.prototype.map()
       // 2. Give us an array of the inventors' first and last names
 
+      const names = inventors.map(inventor => {
+        return {
+          firstName: inventor.first,
+          lastName: inventor.last
+        }
+      } 
+      )
+      // console.log(names);
+
       // Array.prototype.sort()
       // 3. Sort the inventors by birthdate, oldest to youngest
+
+      const birthdate = inventors.sort((a, z) => {
+        return (a.year - z.year)
+      })
+
+      // console.log(birthdate);
 
       // Array.prototype.reduce()
       // 4. How many years did all the inventors live?
 
+      const years = inventors.reduce( (sum, inventor) => {
+        let lifetime = parseInt(inventor.passed) - parseInt(inventor.year);
+        return sum + lifetime;  
+      },0);
+
+      // console.log(years);
+
       // 5. Sort the inventors by years lived
+
+      const lived = inventors.sort((a, z) => {
+        let lifetimeA = a.passed - a.year;
+        let lifetimeZ = z.passed - z.year; 
+
+        return lifetimeA - lifetimeZ; 
+      });
+
+      lived.map( (person) => {
+        // console.log(person.passed - person.year);
+      });
+
+      // console.log(lived);
 
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-      // goto the link above and open the console. Paste the following two lines in.  That will create a list of links in memory that you can reference through the console. Use that list to finish the problem.
+      // goto the link above and open the console. Paste the following two lines in. 
+      //That will create a list of links in memory that you can reference through the console. Use that list to finish the problem.
       // const category = document.querySelector('.mw-category');
       // const links = Array.from(category.querySelectorAll('a'));
 
       // 7. sort Exercise
       // Sort the people alphabetically by last name
+
+      const alphabetical = people.sort();
+
+      console.table(alphabetical);
 
       // 8. Reduce Exercise
       // Sum up the instances of each of these
@@ -110,3 +152,4 @@
         'car',
         'truck'
       ];
+
